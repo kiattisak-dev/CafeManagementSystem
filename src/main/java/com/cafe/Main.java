@@ -11,7 +11,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Cafe cafe = new Cafe();
 
-        // เพิ่มเมนูพร้อม Stock
+        
         cafe.addMenuItem(new MenuItem("Espresso", 50, 10));
         cafe.addMenuItem(new MenuItem("Latte", 70, 8));
         cafe.addMenuItem(new MenuItem("Cappuccino", 80, 5));
