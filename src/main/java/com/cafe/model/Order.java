@@ -1,48 +1,40 @@
-package main.java.com.cafe.model;
-
+package com.cafe.model;
 import java.util.HashMap;
-import java.util.Map;
 
-public class Order {
-    private static int orderCounter = 1;
-    private int orderId;
-    private Map<MenuItem, Integer> items;
-    private double totalAmount;
+private Customer customer;
 
-    public Order() {
-        this.orderId = orderCounter++;
-        this.items = new HashMap<>();
+public void setCustomer(Customer customer) {
+    this.customer = customer;
+}
+
+public Customer getCustomer() {
+    return customer;
+}
+
+public void calculateTotal() {
+    totalAmount = 0.0;
+    for (Map.Entry<MenuItem, Integer> entry : items.entrySet()) {
+        totalAmount += entry.getKey().getPrice() * entry.getValue();
     }
 
-    public void addItem(MenuItem item, int quantity) {
-        items.put(item, quantity);
+    if (customer != null) {
+        double discount = totalAmount * customer.getDiscountRate();
+        totalAmount -= discount;
+    }
+}
+
+public void printReceipt() {
+    System.out.println("👤 Customer: " + (customer != null ? customer.getName() : "N/A"));
+    for (Map.Entry<MenuItem, Integer> entry : items.entrySet()) {
+        MenuItem item = entry.getKey();
+        int quantity = entry.getValue();
+        System.out.println("- " + quantity + "x " + item.getName() + " @ " + item.getPrice() + " = " + (item.getPrice() * quantity));
     }
 
-    public void calculateTotal() {
-        totalAmount = 0;
-        for (Map.Entry<MenuItem, Integer> entry : items.entrySet()) {
-            totalAmount += entry.getKey().getPrice() * entry.getValue();
-        }
+    if (customer != null && customer.getDiscountRate() > 0) {
+        double discount = totalAmount / (1 - customer.getDiscountRate()) * customer.getDiscountRate();
+        System.out.printf("💸 Member Discount: -%.2f\n", discount);
     }
 
-    public double getTotalAmount() {
-        return totalAmount;
-    }
-
-    public void updateStock(Cafe cafe, boolean paymentSuccess) {
-        if (paymentSuccess) {
-            for (Map.Entry<MenuItem, Integer> entry : items.entrySet()) {
-                cafe.updateStock(entry.getKey().getName(), entry.getValue());
-            }
-        }
-    }
-
-    public void printReceipt() {
-        System.out.println("\n Receipt - Order #" + orderId);
-        for (Map.Entry<MenuItem, Integer> entry : items.entrySet()) {
-            System.out.println("✅ " + entry.getValue() + "x " + entry.getKey().getName() + " - "
-                    + entry.getKey().getPrice() + "฿ each");
-        }
-        System.out.println("Total: " + totalAmount + "฿");
-    }
+    System.out.printf("💰 Total: %.2f\n", totalAmount);
 }
