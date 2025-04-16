@@ -1,0 +1,3 @@
+Espresso,50,10
+Latte,70,8
+Cappuccino,80,5

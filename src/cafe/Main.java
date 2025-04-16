@@ -1,9 +1,6 @@
 package cafe;
 
-
 import java.io.IOException;
-import java.io.PrintStream;
-import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 import cafe.exceptions.*;
@@ -13,17 +10,14 @@ import cafe.services.*;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Cafe cafe = new Cafe();
-
-        cafe.addMenuItem(new MenuItem("Espresso", 50, 10));
-        cafe.addMenuItem(new MenuItem("Latte", 70, 8));
-        cafe.addMenuItem(new MenuItem("Cappuccino", 80, 5));
+        Cafe cafe = new Cafe(); // Initialize the cafe system
 
         boolean running = true;
 
         System.out.println("<<< Welcome to Cafe Management System >>>");
 
         while (running) {
+            // Show main menu options
             System.out.println("\n📌 Main Menu:");
             System.out.println("1️⃣ Order Coffee");
             System.out.println("2️⃣ View Stock");
@@ -34,12 +28,13 @@ public class Main {
 
             switch (choice) {
                 case "1":
-                    placeOrder(scanner, cafe);
+                    placeOrder(scanner, cafe); // Place a new order
                     break;
                 case "2":
-                    cafe.displayStock();
+                    cafe.displayStock(); // Show available stock
                     break;
                 case "3":
+                    // Read and display order history
                     OrderHistoryManager historyManager = new OrderHistoryManager();
                     try {
                         historyManager.readOrders("orders.txt");
@@ -48,6 +43,7 @@ public class Main {
                     }
                     break;
                 case "4":
+                    // Exit the program
                     System.out.println("👋 Thank you! Exiting...");
                     running = false;
                     break;
@@ -56,17 +52,19 @@ public class Main {
             }
         }
 
-        scanner.close();
+        scanner.close(); // Close scanner when done
     }
 
+    // Method to handle placing an order
     private static void placeOrder(Scanner scanner, Cafe cafe) {
-        // 📛 รับข้อมูลลูกค้า
+
         System.out.print("\n📛 Enter customer name: ");
         String name = scanner.nextLine();
 
         System.out.print("💳 Are you a member? (yes/no): ");
         String isMember = scanner.nextLine();
 
+        // Create customer (member or regular)
         Customer customer;
         if (isMember.equalsIgnoreCase("yes")) {
             System.out.print("🔖 Enter member ID: ");
@@ -77,13 +75,13 @@ public class Main {
         }
 
         Order order = new Order();
-        order.setCustomer(customer); // เชื่อมลูกค้ากับออเดอร์
+        order.setCustomer(customer); // Set customer info to the order
 
         boolean ordering = true;
 
         while (ordering) {
             System.out.println("\n📜 Menu:");
-            cafe.displayMenu();
+            cafe.displayMenu(); // Show menu
 
             System.out.print("🔹 Enter item name to order (or 'done' to finish): ");
             String input = scanner.nextLine();
@@ -97,6 +95,7 @@ public class Main {
                 System.out.print("🔢 Enter quantity: ");
                 int quantity = Integer.parseInt(scanner.nextLine());
 
+                // Get menu item and add to the order
                 MenuItem item = cafe.getMenuItem(input, quantity);
                 order.addItem(item, quantity);
                 System.out.println("✅ Added " + quantity + "x " + input + " to order.");
@@ -107,6 +106,7 @@ public class Main {
             }
         }
 
+        // Calculate and show the total bill
         order.calculateTotal();
         if (order.getTotalAmount() > 0) {
             System.out.println("\n🧾 Order Summary:");
@@ -114,6 +114,8 @@ public class Main {
 
             double paymentAmount = 0;
             boolean validPayment = false;
+
+            // Loop until valid payment is entered
             while (!validPayment) {
                 try {
                     System.out.print("\n💳 Enter payment amount: ");
@@ -126,9 +128,11 @@ public class Main {
 
             PaymentService paymentService = new PaymentService();
             try {
+                // Try to process the payment
                 paymentService.processPayment(paymentAmount, order.getTotalAmount(), order, cafe);
                 System.out.println("✅ Payment successful! Thank you for your order.");
 
+                // Save order to history
                 OrderHistoryManager historyManager = new OrderHistoryManager();
                 try {
                     historyManager.saveOrder(order, "orders.txt");
@@ -141,6 +145,7 @@ public class Main {
                 System.out.println("❌ " + e.getMessage());
             }
         } else {
+            // No items were ordered
             System.out.println("❌ No items in the order. Returning to main menu...");
         }
     }

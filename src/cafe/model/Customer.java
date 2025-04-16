@@ -1,22 +1,19 @@
 package cafe.model;
 
-// The Customer class serves as a base class for different types of customers.
-// Using Inheritance here allows code reusability and extensibility, enabling subclasses
-// like MemberCustomer to inherit common attributes (e.g., name) and behaviors (e.g., getName)
-// while adding specific features like discounts for members.
 public class Customer {
-    protected String name;
+    protected String name; // Customer's name
 
+    // Constructor: Initialize customer with a name
     public Customer(String name) {
         this.name = name;
     }
 
-    // Provides a default discount rate, which can be overridden by subclasses.
-    // This method supports polymorphism, allowing different customer types to define their own discount logic.
+    // Get discount rate (default is 0 for regular customers)
     public double getDiscountRate() {
-        return 0.0; // Regular customers receive no discount
+        return 0.0;
     }
 
+    // Get the customer's name
     public String getName() {
         return name;
     }

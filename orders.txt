@@ -1,2 +1,0 @@
-main.java.com.cafe.model.Order@6267c3bb
-main.java.com.cafe.model.Order@421faab1
