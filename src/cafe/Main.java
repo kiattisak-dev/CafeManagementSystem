@@ -1,17 +1,17 @@
-package main.java.com.cafe;
+package cafe;
 
-import main.java.com.cafe.model.*;
-import main.java.com.cafe.services.*;
-import main.java.com.cafe.exceptions.*;
 
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
+import cafe.exceptions.*;
+import cafe.model.*;
+import cafe.services.*;
+
 public class Main {
     public static void main(String[] args) {
-        System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8));
         Scanner scanner = new Scanner(System.in);
         Cafe cafe = new Cafe();
 

@@ -1,4 +1,4 @@
-package main.java.com.cafe.model;
+package cafe.model;
 
 // The Customer class serves as a base class for different types of customers.
 // Using Inheritance here allows code reusability and extensibility, enabling subclasses

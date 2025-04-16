@@ -1,4 +1,4 @@
-package main.java.com.cafe.model;
+package cafe.model;
 
 public class MenuItem {
     private String name;

@@ -1,8 +1,8 @@
-package main.java.com.cafe.services;
+package cafe.services;
 
-import main.java.com.cafe.exceptions.PaymentFailedException;
-import main.java.com.cafe.model.Cafe;
-import main.java.com.cafe.model.Order;
+import cafe.exceptions.PaymentFailedException;
+import cafe.model.Cafe;
+import cafe.model.Order;
 
 public class PaymentService {
     // ลบ Discountable ออก เพราะ Order คำนวณส่วนลดเรียบร้อยแล้ว

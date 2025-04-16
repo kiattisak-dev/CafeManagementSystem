@@ -1,4 +1,4 @@
-package main.java.com.cafe.model;
+package cafe.model;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

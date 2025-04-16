@@ -1,4 +1,4 @@
-package main.java.com.cafe.model;
+package cafe.model;
 
 // MemberCustomer extends Customer to represent a member with additional benefits.
 // Inheritance enables MemberCustomer to reuse the name attribute and getName method

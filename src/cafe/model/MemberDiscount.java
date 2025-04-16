@@ -1,4 +1,4 @@
-package main.java.com.cafe.model;
+package cafe.model;
 
 public class MemberDiscount implements Discountable {
     private double discountRate = 0.10; // 10% discount for members

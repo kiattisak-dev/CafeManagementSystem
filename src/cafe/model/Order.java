@@ -1,4 +1,4 @@
-package main.java.com.cafe.model;
+package cafe.model;
 
 import java.util.HashMap;
 import java.util.Map;
