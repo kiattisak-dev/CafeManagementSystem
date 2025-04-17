@@ -11,7 +11,7 @@ public class Cafe {
 
     public Cafe() {
         this.menu = new ArrayList<>(); // Initialize empty menu list
-        loadMenuFromFile("cafe/menu.txt"); // Load menu from file
+        loadMenuFromFile("src/cafe/menu.txt"); // Load menu from file
     }
 
     // Load menu items from a file (format: name,price,stock)

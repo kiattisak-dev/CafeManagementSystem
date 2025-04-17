@@ -18,10 +18,10 @@ public class PaymentService {
         }
 
         double change = paidAmount - totalAmount; // Calculate change
-        System.out.println("✅ Payment of " + paidAmount + "฿ accepted.");
+        System.out.println(" Payment of " + paidAmount + "฿ accepted.");
 
         if (change > 0) { // Display change if any
-            System.out.println("💰 Change: " + change + "฿");
+            System.out.println(" Change: " + change + "฿");
         }
 
         order.updateStock(cafe, true); // Update cafe stock after payment

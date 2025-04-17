@@ -55,10 +55,10 @@ public class Order {
         if (customer != null && customer.getDiscountRate() > 0 && customer.getDiscountRate() < 1) {
             double originalAmount = totalAmount / (1 - customer.getDiscountRate()); // Calculate original amount
             double discount = originalAmount * customer.getDiscountRate(); // Calculate discount
-            System.out.printf("💸 Member Discount: -%.2f\n", discount);
+            System.out.printf(" Member Discount: -%.2f\n", discount);
         }
 
-        System.out.printf("💰 Total: %.2f\n", totalAmount);
+        System.out.printf(" Total: %.2f\n", totalAmount);
     }
 
     // Update cafe stock after order (if committed)

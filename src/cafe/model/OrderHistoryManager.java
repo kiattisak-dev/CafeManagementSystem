@@ -24,17 +24,17 @@ public class OrderHistoryManager {
     public void readOrders(String filename) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
-            System.out.println("\n📜 Order History:");
+            System.out.println("\n Order History:");
             boolean hasOrders = false; // Flag to check if orders exist
             while ((line = reader.readLine()) != null) { // Read each line
                 System.out.println(line); // Display the line
                 hasOrders = true;
             }
             if (!hasOrders) { // Check if no orders were found
-                System.out.println("⚠️ No order history found.");
+                System.out.println(" No order history found.");
             }
         } catch (IOException e) {
-            System.out.println("⚠️ Failed to read order history: " + e.getMessage()); // Handle file read error
+            System.out.println(" Failed to read order history: " + e.getMessage()); // Handle file read error
         }
     }
 }

@@ -1,0 +1,12 @@
+--- Order ---
+Order for G:
+  - 2x Espresso @ 50.0 = 100.0
+  Member Discount: -10.00
+  Total: 90.00
+-------------
+--- Order ---
+Order for po:
+  - 2x Espresso @ 50.0 = 100.0
+  Member Discount: -10.00
+  Total: 90.00
+-------------
